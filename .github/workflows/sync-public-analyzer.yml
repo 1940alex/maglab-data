@@ -26,10 +26,7 @@ jobs:
           curl --fail --silent --show-error --retry 3 "$base/data.json" -o data.json
           jq empty data.json
           sed -i "s@](../sittings/@]($base/reports/sittings/@g" README.md
-          sed -i '1a\
-\
-> Public read-only analyzer mirror. [Machine-readable data](data.json). Updated automatically from the live analyzer; no login or JavaScript required.\
-' README.md
+          sed -i '1a\\\n\\\n> Public read-only analyzer mirror. [Machine-readable data](data.json). Updated automatically from the live analyzer; no login or JavaScript required.\\\n' README.md
       - name: Publish changes
         shell: bash
         run: |

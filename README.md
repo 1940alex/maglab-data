@@ -1,7 +1,8 @@
-Across Cherylee's 300-second runs, does the predefined within-run magnetic-field change differ between ATTENTION and her own CONTROL runs, and does that contrast replicate across sittings?
-\n\
-> Public read-only analyzer mirror. [Machine-readable data](data.json). Updated automatically from the live analyzer; no login or JavaScript required.\
+# MagLab public analyzer
 
+> Public read-only mirror. [Machine-readable data](data.json). Updated automatically; no login or JavaScript required.
+
+Across Cherylee's 300-second runs, does the predefined within-run magnetic-field change differ between ATTENTION and her own CONTROL runs, and does that contrast replicate across sittings?
 
 Generated 2026-08-22T16:29:15+00:00 by maglab-analyzer v17; primary outcome `maglab-final-v1`.
 

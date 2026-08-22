@@ -22,10 +22,13 @@ jobs:
         run: |
           set -euo pipefail
           base="https://futureofinquiry.org/field-meter/maglab-session-console/public"
-          curl --fail --silent --show-error --retry 3 "$base/reports/experiment/report.md" -o README.md
-          curl --fail --silent --show-error --retry 3 "$base/data.json" -o data.json
+          reader="https://r.jina.ai/$base"
+          curl --fail --silent --show-error --max-time 60 --retry 3 "$reader/" -o report.reader
+          curl --fail --silent --show-error --max-time 60 --retry 3 "$reader/data.json" -o data.reader
+          awk 'body { print } /^Markdown Content:$/ { body=1; next }' report.reader > README.md
+          awk 'body { print } /^Markdown Content:$/ { body=1; next }' data.reader > data.json
+          rm report.reader data.reader
           jq empty data.json
-          sed -i "s@](../sittings/@]($base/reports/sittings/@g" README.md
           sed -i '1a\\\n\\\n> Public read-only analyzer mirror. [Machine-readable data](data.json). Updated automatically from the live analyzer; no login or JavaScript required.\\\n' README.md
       - name: Publish changes
         shell: bash

@@ -29,7 +29,12 @@ jobs:
           awk 'body { print } /^Markdown Content:$/ { body=1; next }' data.reader > data.json
           rm report.reader data.reader
           jq empty data.json
-          sed -i '1a\\\n\\\n> Public read-only analyzer mirror. [Machine-readable data](data.json). Updated automatically from the live analyzer; no login or JavaScript required.\\\n' README.md
+          {
+            printf '# MagLab public analyzer\n\n'
+            printf '> Public read-only mirror. [Machine-readable data](data.json). Updated automatically; no login or JavaScript required.\n\n'
+            cat README.md
+          } > README.tmp
+          mv README.tmp README.md
       - name: Publish changes
         shell: bash
         run: |
